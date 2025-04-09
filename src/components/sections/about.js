@@ -125,7 +125,20 @@ const About = () => {
     sr.reveal(revealContainer.current, srConfig());
   }, []);
 
-  const skills = ['JavaScript (ES6+)', 'TypeScript', 'React', 'Eleventy', 'Node.js', 'WordPress'];
+  const skills = [
+    '.Net',
+    'SQL',
+    'Docker',
+    'kubernetes',
+    'Powershell',
+    'bash',
+    'Python',
+    'Typescript',
+    'Blazor',
+    'CosmosDB',
+    'Azure',
+    'AWS',
+  ];
 
   return (
     <StyledAboutSection id="about" ref={revealContainer}>
@@ -135,30 +148,49 @@ const About = () => {
         <StyledText>
           <div>
             <p>
-              Hello! My name is Brittany and I enjoy creating things that live on the internet. My
-              interest in web development started back in 2012 when I decided to try editing custom
-              Tumblr themes — turns out hacking together a custom reblog button taught me a lot
-              about HTML &amp; CSS!
+              Hi! My name is Ahmed Magdi, and I’ve been passionate about technology and databases
+              since 2008, when I began my career through a scholarship from the Egyptian Ministry of
+              Communication for MS SQL Server administration and software development.
             </p>
 
             <p>
-              Fast-forward to today, and I’ve had the privilege of working at{' '}
-              <a href="https://us.mullenlowe.com/">an advertising agency</a>,{' '}
-              <a href="https://starry.com/">a start-up</a>,{' '}
-              <a href="https://www.apple.com/">a huge corporation</a>, and{' '}
-              <a href="https://scout.camd.northeastern.edu/">a student-led design studio</a>. My
-              main focus these days is building accessible, inclusive products and digital
-              experiences at <a href="https://upstatement.com/">Upstatement</a> for a variety of
-              clients.
+              Over the years, I’ve grown into a results-driven and experienced Database
+              Administrator with more than 7 years of hands-on expertise. I specialize in managing
+              and optimizing database structures using a wide range of technologies, including MS
+              SQL Server, T-SQL, LINQ, SSIS, AOAG, and Microsoft Entity Framework.
             </p>
 
             <p>
-              I also recently{' '}
-              <a href="https://www.newline.co/courses/build-a-spotify-connected-app">
-                launched a course
-              </a>{' '}
-              that covers everything you need to build a web app with the Spotify API using Node
-              &amp; React.
+              Alongside my DBA work, I’ve gained strong experience in{' '}
+              <a href="https://www.docker.com/">Docker</a> and{' '}
+              <a href="https://kubernetes.io/">Kubernetes</a>, using them extensively to
+              containerize and deploy scalable applications. I’ve built multiple backend services
+              using .NET REST APIs and developed front-end interfaces with Microsoft Blazor. I’m
+              also an active member of the open-source community{' '}
+              <a href="https://github.com/hassanhabib/The-Standard">The Standard</a>, where we
+              collaborate on clean architecture and development best practices.
+            </p>
+
+            <p>
+              My focus has always been on building reliable, secure, and high-performing database
+              solutions. I’ve led initiatives to improve backup and recovery strategies, ensured
+              compliance with standards like ISO 27001, GDPR, PCI-DSS, and implemented robust
+              security protocols. I also enjoy supporting application development with ASP, .NET,
+              and MVC.
+            </p>
+
+            <p>
+              I’ve had the opportunity to collaborate with cross-functional teams, manage database
+              infrastructure, and contribute to secure network environments. I’ve even taken on
+              out-of-hours support to keep systems running smoothly and clients happy.
+            </p>
+
+            <p>
+              Currently, I’m pursuing my master’s degree at the{' '}
+              <a href="https://igsr.alexu.edu.eg/index.php/en/">
+                Institute of Graduate Studies and Research – Alexandria University
+              </a>
+              , continuing to deepen my knowledge and stay ahead of emerging trends in the field.
             </p>
 
             <p>Here are a few technologies I’ve been working with recently:</p>
