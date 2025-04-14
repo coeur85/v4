@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import { useStaticQuery, graphql } from 'gatsby';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import styled from 'styled-components';
 import sr from '@utils/sr';
 import { srConfig } from '@config';
@@ -304,7 +303,7 @@ const StyledProject = styled.li`
 `;
 
 const Featured = () => {
-  const data = useStaticQuery(graphql`
+  useStaticQuery(graphql`
     {
       featured: allMarkdownRemark(
         filter: { fileAbsolutePath: { regex: "/content/featured/" } }
@@ -331,7 +330,6 @@ const Featured = () => {
     }
   `);
 
-  const featuredProjects = data.featured.edges.filter(({ node }) => node);
   const revealTitle = useRef(null);
   const revealProjects = useRef([]);
   const prefersReducedMotion = usePrefersReducedMotion();
@@ -345,6 +343,37 @@ const Featured = () => {
     revealProjects.current.forEach((ref, i) => sr.reveal(ref, srConfig(i * 100)));
   }, []);
 
+  const updatedProjects = [
+    {
+      title: 'The Standard',
+      description: `A collection of decades of experience in the engineering industry, authored to help navigate the vast ocean of knowledge. It reflects the ongoing evolution of the engineering industry and is a collaborative effort of thoughts from hundreds of engineers.`,
+      github: 'https://github.com/hassanhabib/The-Standard',
+      tech: ['C#'],
+      image: null, // No image available
+    },
+    {
+      title: 'OtripleS.Portal',
+      description: `An open-source schooling system aimed at providing a better experience for schools needing management, communication, and tutoring systems in one place. It directs software development funds and hours to families in need.`,
+      github: 'https://github.com/hassanhabib/OtripleS.Portal',
+      tech: ['C#', 'HTML', 'CSS'],
+      image: null, // No image available
+    },
+    {
+      title: 'Signage Platform',
+      description: `A centralized solution to display slideshows of pictures and videos on multiple screens in retail stores. It updates content immediately when files are added or removed from a shared network location.`,
+      github: 'https://github.com/coeur85/SignagePlatform',
+      tech: ['C#', 'HTML'],
+      image: null, // No image available
+    },
+    {
+      title: 'Standardly',
+      description: `A productivity tool to quickly generate code for standard components like brokers, foundations, controllers, and more. It provides a multi-project template for Visual Studio to streamline solution setup and code generation.`,
+      github: 'https://github.com/coeur85/Standardly',
+      tech: ['C#'],
+      image: null, // No image available
+    },
+  ];
+
   return (
     <section id="projects">
       <h2 className="numbered-heading" ref={revealTitle}>
@@ -352,63 +381,47 @@ const Featured = () => {
       </h2>
 
       <StyledProjectsGrid>
-        {featuredProjects &&
-          featuredProjects.map(({ node }, i) => {
-            const { frontmatter, html } = node;
-            const { external, title, tech, github, cover, cta } = frontmatter;
-            const image = getImage(cover);
+        {updatedProjects.map((project, i) => (
+          <StyledProject key={i} ref={el => (revealProjects.current[i] = el)}>
+            <div className="project-content">
+              <div>
+                <p className="project-overline">Featured Project</p>
 
-            return (
-              <StyledProject key={i} ref={el => (revealProjects.current[i] = el)}>
-                <div className="project-content">
-                  <div>
-                    <p className="project-overline">Featured Project</p>
+                <h3 className="project-title">
+                  <a href={project.github}>{project.title}</a>
+                </h3>
 
-                    <h3 className="project-title">
-                      <a href={external}>{title}</a>
-                    </h3>
-
-                    <div
-                      className="project-description"
-                      dangerouslySetInnerHTML={{ __html: html }}
-                    />
-
-                    {tech.length && (
-                      <ul className="project-tech-list">
-                        {tech.map((tech, i) => (
-                          <li key={i}>{tech}</li>
-                        ))}
-                      </ul>
-                    )}
-
-                    <div className="project-links">
-                      {cta && (
-                        <a href={cta} aria-label="Course Link" className="cta">
-                          Learn More
-                        </a>
-                      )}
-                      {github && (
-                        <a href={github} aria-label="GitHub Link">
-                          <Icon name="GitHub" />
-                        </a>
-                      )}
-                      {external && !cta && (
-                        <a href={external} aria-label="External Link" className="external">
-                          <Icon name="External" />
-                        </a>
-                      )}
-                    </div>
-                  </div>
+                <div className="project-description">
+                  <p>{project.description}</p>
                 </div>
 
-                <div className="project-image">
-                  <a href={external ? external : github ? github : '#'}>
-                    <GatsbyImage image={image} alt={title} className="img" />
-                  </a>
+                {project.tech.length > 0 && (
+                  <ul className="project-tech-list">
+                    {project.tech.map((tech, i) => (
+                      <li key={i}>{tech}</li>
+                    ))}
+                  </ul>
+                )}
+
+                <div className="project-links">
+                  {project.github && (
+                    <a href={project.github} aria-label="GitHub Link">
+                      <Icon name="GitHub" />
+                    </a>
+                  )}
                 </div>
-              </StyledProject>
-            );
-          })}
+              </div>
+            </div>
+
+            {project.image && (
+              <div className="project-image">
+                <a href={project.github}>
+                  <img src={project.image} alt={project.title} className="img" />
+                </a>
+              </div>
+            )}
+          </StyledProject>
+        ))}
       </StyledProjectsGrid>
     </section>
   );
